@@ -1,13 +1,8 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-git config --global user.email "psmpsm613@gmail.com"
-git config --global user.name "psmpsm456"
-git init
 git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/psmpsm456/Tokyo.git
-git push -u origin main
+git commit -m "편집 모드 추가"
+git push
 echo ""
-echo "=== 완료! ==="
+echo "=== 완료! Vercel이 자동 배포를 시작합니다 ==="
 read -p "아무 키나 누르면 닫힙니다..."

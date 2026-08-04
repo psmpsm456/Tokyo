@@ -745,6 +745,55 @@
       .day-body { padding: 1.2rem 1.4rem; }
       .grid-2 { grid-template-columns: 1fr; }
     }
+
+    /* ── EDIT MODE ── */
+    #editBtn {
+      position: fixed; bottom: 11.6rem; right: 1.2rem; z-index: 200;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      border: none; cursor: pointer; color: #fff; font-size: 1.1rem;
+      box-shadow: 0 4px 18px rgba(255,152,0,0.45);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, background 0.3s;
+      font-family: 'Jua', sans-serif;
+    }
+    #editBtn:hover { transform: translateY(-3px); }
+    #editBtn.active { background: linear-gradient(135deg, #43a047, #2e7d32); }
+    #editBanner {
+      display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      background: #ff9800; color: #fff;
+      padding: 0.48rem 1rem; text-align: center;
+      font-family: 'Jua', sans-serif; font-size: 0.82rem; letter-spacing: 0.02em;
+    }
+    #editBanner.on { display: block; }
+    [data-eid][contenteditable="true"] {
+      outline: 2px dashed rgba(255,152,0,0.65) !important;
+      border-radius: 4px; padding: 1px 4px;
+      background: rgba(255,248,225,0.75) !important;
+      cursor: text;
+    }
+    [data-eid][contenteditable="true"]:focus {
+      outline: 2px solid #ff9800 !important;
+      background: rgba(255,248,225,0.98) !important;
+    }
+    .edit-del-btn {
+      display: none !important; background: none; border: none;
+      color: #e53935; font-size: 0.9rem; cursor: pointer;
+      padding: 0 3px; line-height: 1; flex-shrink: 0;
+      opacity: 0.7; transition: opacity 0.15s;
+    }
+    .edit-del-btn:hover { opacity: 1; }
+    .edit-add-btn {
+      display: none !important; width: 100%; margin-top: 0.6rem;
+      padding: 7px 0; border: 1.5px dashed rgba(255,152,0,0.5);
+      border-radius: 8px; background: none;
+      color: #ff9800; font-family: 'Jua', sans-serif;
+      font-size: 0.82rem; cursor: pointer; letter-spacing: 0.04em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .edit-add-btn:hover { background: rgba(255,152,0,0.09); border-color: #ff9800; }
+    body.edit-on .edit-del-btn { display: inline-flex !important; align-items: center; }
+    body.edit-on .edit-add-btn { display: block !important; }
   </style>
 </head>
 <body>
@@ -752,6 +801,8 @@
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
 <button id="expBtn" onclick="openExpModal()" title="지출 트래커">💴</button>
 <button id="transBtn" onclick="document.getElementById('transModal').classList.add('open')" title="번역기">🈳</button>
+<button id="editBtn" onclick="toggleEditMode()" title="편집 모드">✏️</button>
+<div id="editBanner">✏️ 편집 모드 — 오렌지 테두리 텍스트를 클릭해서 수정 &nbsp;|&nbsp; 완료 후 ✓ 버튼 클릭</div>
 
 <!-- EXPENSE TRACKER MODAL -->
 <div id="expModal" onclick="if(event.target===this)this.classList.remove('open')">
@@ -1215,6 +1266,7 @@
 <script>
   // ── MAP (구글맵 직접 이동) ──
   function openMap(name, query, extUrl, isCollection) {
+    if (editOn) return;
     const url = extUrl || ('https://www.google.com/maps/search/?q=' + query);
     window.open(url, '_blank');
   }
@@ -1315,6 +1367,7 @@
       if (s[inp.dataset.day]) inp.value = s[inp.dataset.day];
     });
     updateSteps();
+    initEditMode();
   });
 
   // ── TRANSLATOR ──
@@ -1622,6 +1675,120 @@
         </div>
       `;
     }).join('');
+  }
+
+  // ── EDIT MODE ──
+  const EDIT_DATA_KEY = 'tokyo_edit_data';
+  let editOn = false;
+
+  function getEditData() {
+    try { return JSON.parse(localStorage.getItem(EDIT_DATA_KEY) || '{}'); } catch { return {}; }
+  }
+  function saveEditItem(eid, val) {
+    const d = getEditData(); d[eid] = val;
+    try { localStorage.setItem(EDIT_DATA_KEY, JSON.stringify(d)); } catch {}
+  }
+
+  function initEditMode() {
+    const targets = [
+      ['.hero-sub',                   'hero_sub'],
+      ['.hero-date',                  'hero_date'],
+      ['.day-info h3',                'day_h3'],
+      ['.day-info .day-date',         'day_date'],
+      ['.map-card-name',              'mc'],
+      ['#itinerary .section-title',   'st_iti'],
+      ['#places .section-title',      'st_pl'],
+      ['#restaurants .section-title', 'st_res'],
+      ['#packing .section-title',     'st_pack'],
+      ['#steps .section-title',       'st_step'],
+    ];
+    targets.forEach(([sel, prefix]) => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        if (!el.dataset.eid) el.dataset.eid = prefix + '_' + i;
+      });
+    });
+
+    // Schedule items: mark editable text spans + add delete/add buttons
+    document.querySelectorAll('.schedule-list').forEach((list, listIdx) => {
+      list.querySelectorAll('li').forEach((li, liIdx) => {
+        if (li.querySelector('.meal-row')) return;
+        const mainSpan = li.querySelector(':scope > span:not(.schedule-arrow)');
+        if (mainSpan && !mainSpan.querySelector('a') && !mainSpan.dataset.eid) {
+          mainSpan.dataset.eid = `sched_${listIdx}_${liIdx}`;
+        }
+        if (!li.querySelector('.edit-del-btn')) {
+          const btn = document.createElement('button');
+          btn.className = 'edit-del-btn';
+          btn.innerHTML = '✕'; btn.title = '항목 삭제';
+          btn.addEventListener('click', e => { e.stopPropagation(); li.remove(); });
+          li.appendChild(btn);
+        }
+      });
+      if (!list.nextElementSibling || !list.nextElementSibling.classList.contains('edit-add-btn')) {
+        const addBtn = document.createElement('button');
+        addBtn.className = 'edit-add-btn';
+        addBtn.textContent = '+ 항목 추가';
+        addBtn.addEventListener('click', () => addScheduleItem(list, listIdx));
+        list.after(addBtn);
+      }
+    });
+
+    // Restore saved edits
+    const data = getEditData();
+    document.querySelectorAll('[data-eid]').forEach(el => {
+      const v = data[el.dataset.eid];
+      if (v != null) el.textContent = v;
+    });
+  }
+
+  function addScheduleItem(list, listIdx) {
+    const li = document.createElement('li');
+    const arrow = document.createElement('span');
+    arrow.className = 'schedule-arrow'; arrow.textContent = '→';
+    const text = document.createElement('span');
+    text.dataset.eid = `sched_${listIdx}_new_${Date.now()}`;
+    text.style.flex = '1'; text.textContent = '새 항목 입력';
+    const delBtn = document.createElement('button');
+    delBtn.className = 'edit-del-btn'; delBtn.innerHTML = '✕';
+    delBtn.style.display = 'inline-flex';
+    delBtn.addEventListener('click', e => { e.stopPropagation(); li.remove(); });
+    li.appendChild(arrow); li.appendChild(text); li.appendChild(delBtn);
+    list.appendChild(li);
+    if (editOn) {
+      text.contentEditable = 'true';
+      text.addEventListener('input', editInputHandler);
+      const range = document.createRange();
+      range.selectNodeContents(text);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      text.focus();
+    }
+    saveEditItem(text.dataset.eid, text.textContent);
+  }
+
+  function editInputHandler(e) {
+    const el = e.currentTarget;
+    if (el.dataset.eid) saveEditItem(el.dataset.eid, el.textContent);
+  }
+
+  function toggleEditMode() {
+    editOn = !editOn;
+    document.body.classList.toggle('edit-on', editOn);
+    const btn = document.getElementById('editBtn');
+    btn.classList.toggle('active', editOn);
+    btn.textContent = editOn ? '✓' : '✏️';
+    btn.title = editOn ? '편집 완료' : '편집 모드';
+    document.getElementById('editBanner').classList.toggle('on', editOn);
+    document.querySelectorAll('[data-eid]').forEach(el => {
+      el.contentEditable = editOn ? 'true' : 'false';
+      if (editOn) {
+        el.addEventListener('input', editInputHandler);
+        el.addEventListener('blur', editInputHandler);
+      } else {
+        el.removeEventListener('input', editInputHandler);
+        el.removeEventListener('blur', editInputHandler);
+      }
+    });
   }
 
   // ── PWA 서비스 워커 등록 ──

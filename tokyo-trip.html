@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>☀️ Tokyo Trip · 8/12–8/15</title>
+  <meta property="og:title" content="Tokyo Trip 🌸 8/12–8/15" />
+  <meta property="og:description" content="도쿄 여행 일정 · 장소 · 맛집 · 준비물 총정리" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="tokyo-img1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tokyo Trip 🌸 8/12–8/15" />
+  <meta name="twitter:description" content="도쿄 여행 일정 · 장소 · 맛집 · 준비물 총정리" />
+  <meta name="twitter:image" content="tokyo-img1.jpg" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#d4186a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="도쿄여행" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Jua&family=Playfair+Display:wght@700&display=swap');
+
+    :root {
+      --bg: #fff0f8;
+      --card: #fde8f3;
+      --card2: #fbd4ea;
+      --border: #f4b0d4;
+      --accent: #d4186a;
+      --accent2: #ff6eb4;
+      --accent3: #e0408e;
+      --text: #2a0818;
+      --muted: #8a3a60;
+      --gold: #c4005a;
+      --pink-glow: rgba(212,24,106,0.12);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jua', sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    /* ── SCROLL TO TOP ── */
+    #scrollTop {
+      position: fixed; bottom: 1.5rem; right: 1.2rem; z-index: 200;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent3), var(--accent));
+      border: none; cursor: pointer; color: #fff; font-size: 1.1rem;
+      box-shadow: 0 4px 18px rgba(212,24,106,0.38);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+      font-family: 'Jua', sans-serif;
+    }
+    #scrollTop.visible { opacity: 1; pointer-events: all; }
+    #scrollTop:hover { transform: translateY(-3px); }
+
+    /* ── TRANSLATOR ── */
+    #transBtn {
+      position: fixed; bottom: 4.8rem; right: 1.2rem; z-index: 200;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #7b4fe0, #b44fd4);
+      border: none; cursor: pointer; color: #fff; font-size: 1.15rem;
+      box-shadow: 0 4px 18px rgba(123,79,224,0.45);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s;
+      font-family: 'Jua', sans-serif;
+    }
+    #transBtn:hover { transform: translateY(-3px); }
+
+    /* ── EXPENSE TRACKER ── */
+    #expBtn {
+      position: fixed; bottom: 8.2rem; right: 1.2rem; z-index: 200;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #d4186a, #f472b6);
+      border: none; cursor: pointer; color: #fff; font-size: 1.15rem;
+      box-shadow: 0 4px 18px rgba(212,24,106,0.45);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s; font-family: 'Jua', sans-serif;
+    }
+    #expBtn:hover { transform: translateY(-3px); }
+    #expModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 1300;
+      align-items: flex-end; justify-content: center;
+    }
+    #expModal.open { display: flex; }
+    .exp-inner {
+      background: #fff; border-radius: 20px 20px 0 0;
+      width: 100%; max-width: 480px;
+      font-family: 'Jua', sans-serif;
+      animation: slide-up 0.32s cubic-bezier(0.34,1.56,0.64,1);
+      max-height: 88vh; display: flex; flex-direction: column;
+    }
+    .exp-header {
+      background: linear-gradient(135deg, #d4186a, #f472b6);
+      border-radius: 20px 20px 0 0; padding: 1rem 1.2rem 1rem; color: #fff; flex-shrink:0;
+    }
+    .exp-header-sub { font-size: 0.78rem; opacity: 0.85; margin-bottom: 2px; }
+    .exp-header-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .exp-summary {
+      display: flex; gap: 8px; margin-bottom: 0.6rem;
+    }
+    .exp-sum-box {
+      flex: 1; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 0.5rem 0.75rem;
+    }
+    .exp-sum-label { font-size: 0.68rem; opacity: 0.85; }
+    .exp-sum-val { font-size: 1.1rem; font-weight: 700; }
+    .exp-sum-won { font-size: 0.68rem; opacity: 0.8; }
+    .exp-bar-wrap { background: rgba(255,255,255,0.25); border-radius: 20px; height: 5px; margin-bottom: 3px; }
+    .exp-bar-fill { height: 100%; background: #fff; border-radius: 20px; transition: width 0.4s; }
+    .exp-bar-pct { font-size: 0.68rem; opacity: 0.8; text-align: right; }
+    .exp-budget-row {
+      display: flex; align-items: center; gap: 6px; font-size: 0.75rem; opacity: 0.9;
+      margin-top: 0.3rem;
+    }
+    .exp-budget-input {
+      width: 90px; padding: 3px 6px; border-radius: 6px; border: none;
+      font-family: 'Jua', sans-serif; font-size: 0.78rem; text-align: right;
+      background: rgba(255,255,255,0.25); color: #fff;
+    }
+    .exp-budget-input::placeholder { color: rgba(255,255,255,0.6); }
+    .exp-add-section {
+      padding: 0.75rem 1rem 0.5rem; border-bottom: 0.5px solid #fde8f3; flex-shrink: 0;
+    }
+    .exp-add-row { display: flex; gap: 6px; margin-bottom: 6px; }
+    .exp-select, .exp-input {
+      padding: 7px 8px; border: 1px solid #f4b0d4; border-radius: 8px;
+      font-family: 'Jua', sans-serif; font-size: 16px; background: #fff8fc; color: #2a0818;
+      outline: none;
+    }
+    .exp-select:focus, .exp-input:focus { border-color: #d4186a; }
+    .exp-add-btn {
+      padding: 7px 14px; background: #d4186a; color: #fff;
+      border: none; border-radius: 8px; font-family: 'Jua', sans-serif;
+      font-size: 0.82rem; cursor: pointer; white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .exp-add-btn:hover { opacity: 0.85; }
+    .exp-list { overflow-y: auto; flex: 1; padding: 0.5rem 1rem 0.5rem; }
+    .exp-day-group { margin-bottom: 0.75rem; }
+    .exp-day-label {
+      font-size: 0.78rem; color: #d4186a; font-weight: 600;
+      margin-bottom: 5px; padding-bottom: 4px;
+      border-bottom: 1px solid #fde8f3;
+      display: flex; justify-content: space-between;
+    }
+    .exp-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 0; border-bottom: 0.5px solid #fde8f3;
+    }
+    .exp-item-cat { font-size: 1rem; }
+    .exp-item-info { flex: 1; }
+    .exp-item-memo { font-size: 0.85rem; color: #2a0818; }
+    .exp-item-sub { font-size: 0.7rem; color: #8a3a60; }
+    .exp-item-amt { text-align: right; }
+    .exp-item-jpy { font-size: 0.88rem; font-weight: 600; color: #d4186a; }
+    .exp-item-krw { font-size: 0.7rem; color: #8a3a60; }
+    .exp-item-del {
+      background: none; border: none; color: #ccc; font-size: 1rem;
+      cursor: pointer; padding: 0 2px; line-height: 1;
+    }
+    .exp-item-del:hover { color: #d4186a; }
+    .exp-close-row { padding: 0.6rem 1rem 1.2rem; flex-shrink: 0; }
+    .exp-close-btn {
+      width: 100%; padding: 0.65rem; border: 1.5px solid #ccc;
+      border-radius: 12px; background: none; font-family: 'Jua', sans-serif;
+      font-size: 0.95rem; cursor: pointer; color: #888;
+    }
+
+    /* ── ORDER ASSISTANT ── */
+
+    #transModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 1300;
+      align-items: flex-end; justify-content: center;
+    }
+    #transModal.open { display: flex; }
+    .trans-inner {
+      background: #fff; border-radius: 20px 20px 0 0;
+      width: 100%; max-width: 480px; padding: 1.4rem 1.4rem 2rem;
+      font-family: 'Jua', sans-serif;
+      animation: slide-up 0.32s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes slide-up { from { transform: translateY(60px); opacity:0; } to { transform:none; opacity:1; } }
+    .trans-title {
+      text-align: center; font-size: 1rem; color: #7b4fe0;
+      margin-bottom: 1rem;
+    }
+    .trans-dir {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.6rem; margin-bottom: 0.8rem;
+    }
+    .trans-dir span {
+      font-size: 0.9rem; font-weight: 700; color: #7b4fe0;
+    }
+    #swapBtn {
+      background: none; border: 1.5px solid #b44fd4; border-radius: 50%;
+      width: 32px; height: 32px; cursor: pointer; color: #b44fd4;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    #swapBtn:hover { background: #b44fd4; color: #fff; }
+    .trans-textarea {
+      width: 100%; border: 1.5px solid #e0c8f8; border-radius: 12px;
+      padding: 0.75rem; font-family: 'Jua', sans-serif; font-size: 0.9rem;
+      resize: none; outline: none; background: #faf5ff; color: #2a0818;
+      transition: border-color 0.2s;
+    }
+    .trans-textarea:focus { border-color: #7b4fe0; }
+    #transOutput {
+      min-height: 70px; background: #f3ebff; border-radius: 12px;
+      padding: 0.75rem; font-size: 0.9rem; color: #3a1060;
+      margin-top: 0.6rem; line-height: 1.6; white-space: pre-wrap;
+    }
+    .trans-actions {
+      display: flex; gap: 0.6rem; margin-top: 0.8rem;
+    }
+    #transGoBtn {
+      flex: 1; padding: 0.6rem; border: none; border-radius: 12px;
+      background: linear-gradient(135deg, #7b4fe0, #b44fd4);
+      color: #fff; font-family: 'Jua', sans-serif; font-size: 0.95rem;
+      cursor: pointer; transition: opacity 0.2s;
+    }
+    #transGoBtn:hover { opacity: 0.88; }
+    #transCloseBtn {
+      padding: 0.6rem 1.2rem; border: 1.5px solid #ccc; border-radius: 12px;
+      background: none; font-family: 'Jua', sans-serif; font-size: 0.95rem;
+      cursor: pointer; color: #888;
+    }
+    .trans-voice-row {
+      display: flex; gap: 0.5rem; margin-top: 0.5rem;
+    }
+    .voice-btn {
+      flex: 1; padding: 0.5rem 0; border-radius: 12px; border: none;
+      font-family: 'Jua', sans-serif; font-size: 0.88rem; cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .voice-btn:active { transform: scale(0.95); }
+    #micBtn {
+      background: linear-gradient(135deg, #e040fb, #7b4fe0);
+      color: #fff;
+    }
+    #micBtn.listening {
+      animation: mic-pulse 1s ease-in-out infinite;
+    }
+    #speakBtn {
+      background: linear-gradient(135deg, #26c6da, #7b4fe0);
+      color: #fff;
+    }
+    @keyframes mic-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(224,64,251,0.5); }
+      50% { box-shadow: 0 0 0 8px rgba(224,64,251,0); }
+    }
+
+    /* ── LEOPARD DIVIDER ── */
+    .leo-divider {
+      height: 26px;
+      background-image:
+        radial-gradient(ellipse 18px 11px at 12px 13px,  rgba(212,24,106,0.28) 55%, transparent 56%),
+        radial-gradient(ellipse 10px 6px  at 27px 5px,   rgba(224,64,142,0.2)  55%, transparent 56%),
+        radial-gradient(ellipse 14px 9px  at 52px 17px,  rgba(212,24,106,0.25) 55%, transparent 56%),
+        radial-gradient(ellipse 8px  5px  at 64px 4px,   rgba(224,64,142,0.18) 55%, transparent 56%),
+        radial-gradient(ellipse 16px 10px at 90px 14px,  rgba(212,24,106,0.26) 55%, transparent 56%),
+        radial-gradient(ellipse 9px  6px  at 104px 3px,  rgba(224,64,142,0.2)  55%, transparent 56%),
+        radial-gradient(ellipse 13px 8px  at 132px 16px, rgba(212,24,106,0.23) 55%, transparent 56%),
+        radial-gradient(ellipse 7px  5px  at 148px 5px,  rgba(224,64,142,0.17) 55%, transparent 56%),
+        radial-gradient(ellipse 15px 9px  at 170px 13px, rgba(212,24,106,0.27) 55%, transparent 56%),
+        radial-gradient(ellipse 10px 6px  at 186px 2px,  rgba(224,64,142,0.2)  55%, transparent 56%);
+      background-size: 200px 26px;
+      background-color: var(--card2);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh; min-height: 520px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      background: linear-gradient(160deg, #ffe8f4 0%, #ffd0ea 40%, #ffecf6 100%);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(255,240,248,0.5) 60%, var(--bg) 100%);
+      pointer-events: none;
+    }
+    .hero-sparkle {
+      position: absolute; top: 14%;
+      left: 50%; transform: translateX(-50%);
+      font-size: 1.6rem;
+      letter-spacing: clamp(0.6rem, 3vw, 1.8rem);
+      color: var(--accent); opacity: 0.7;
+      z-index: 2; animation: sparkle 3s ease-in-out infinite;
+      white-space: nowrap;
+    }
+    @keyframes sparkle { 0%,100%{opacity:0.45} 50%{opacity:1} }
+
+    .hero-content { position: relative; z-index: 3; padding: 2rem 1.5rem 3rem; }
+    .hero-tag {
+      font-size: 0.72rem; letter-spacing: 0.28em;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .hero h1 {
+      font-family: 'Jua', sans-serif;
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-weight: 400; line-height: 1.2; padding-bottom: 0.1em;
+      background: linear-gradient(90deg,
+        #e8559a 0%, #f472b6 30%, #fb9fd4 40%,
+        #ffd6ec 47%, #ffffff 50%, #ffd6ec 53%,
+        #fb9fd4 60%, #f472b6 70%, #e8559a 100%
+      );
+      background-size: 300% 100%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: title-shine 3.5s linear infinite;
+      filter: drop-shadow(0 0 14px rgba(212,24,106,0.22));
+    }
+    @keyframes title-shine {
+      0%   { background-position: 100% 0%; }
+      100% { background-position: 0% 0%; }
+    }
+    .hero-sub { margin-top: 1rem; font-size: 0.95rem; color: var(--muted); letter-spacing: 0.13em; }
+    .hero-date { margin-top: 0.5rem; font-size: 1rem; color: var(--accent3); letter-spacing: 0.08em; }
+    .scroll-hint {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.2em; z-index: 3;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%,100%{transform:translateX(-50%) translateY(0)}
+      50%{transform:translateX(-50%) translateY(7px)}
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,240,248,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    nav a {
+      padding: 0.85rem 1.2rem;
+      color: var(--muted); text-decoration: none;
+      font-size: 0.82rem; letter-spacing: 0.08em;
+      transition: color 0.2s; border-bottom: 2px solid transparent;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    nav a:hover { color: var(--text); }
+    nav a.active { color: var(--accent); border-color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.2rem; }
+    section { padding: 4rem 0; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.28em;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-bottom: 2.5rem; line-height: 1.2;
+    }
+
+    /* ── DAY CARDS ── */
+    @keyframes border-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .days { display: flex; flex-direction: column; gap: 2.2rem; }
+    .day-card {
+      border-radius: 16px;
+      position: relative; isolation: isolate;
+      overflow: hidden;
+      padding: 2px;
+      background: var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .day-card::before {
+      content: ''; position: absolute;
+      inset: -100%;
+      background: conic-gradient(from 0deg,
+        #ffb8d9, #f472b6, #e8559a, #d4186a, #c4005a,
+        #d4186a, #e8559a, #f472b6, #ffb8d9);
+      z-index: 0; pointer-events: none;
+      opacity: 0; transition: opacity 0.35s;
+    }
+    .day-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(212,24,106,0.15);
+    }
+    .day-card:hover::before {
+      opacity: 1;
+      animation: border-rotate 2.5s linear infinite;
+    }
+    .day-card-inner {
+      position: relative; z-index: 1;
+      border-radius: 14px; overflow: hidden;
+      background-color: var(--card);
+      background-image:
+        radial-gradient(ellipse 22px 15px at 8%  18%, rgba(212,24,106,0.08) 60%, transparent 61%),
+        radial-gradient(ellipse 14px 9px  at 14%  6%, rgba(224,64,142,0.06) 60%, transparent 61%),
+        radial-gradient(ellipse 18px 12px at 28% 72%, rgba(212,24,106,0.07) 60%, transparent 61%),
+        radial-gradient(ellipse 10px 7px  at 34% 58%, rgba(224,64,142,0.05) 60%, transparent 61%),
+        radial-gradient(ellipse 20px 13px at 52% 30%, rgba(212,24,106,0.08) 60%, transparent 61%),
+        radial-gradient(ellipse 12px 8px  at 58% 14%, rgba(224,64,142,0.06) 60%, transparent 61%),
+        radial-gradient(ellipse 16px 11px at 70% 80%, rgba(212,24,106,0.07) 60%, transparent 61%),
+        radial-gradient(ellipse 9px  6px  at 76% 65%, rgba(224,64,142,0.05) 60%, transparent 61%),
+        radial-gradient(ellipse 21px 14px at 88% 22%, rgba(212,24,106,0.08) 60%, transparent 61%),
+        radial-gradient(ellipse 13px 8px  at 94% 10%, rgba(224,64,142,0.06) 60%, transparent 61%),
+        radial-gradient(ellipse 17px 11px at 42% 90%, rgba(212,24,106,0.06) 60%, transparent 61%),
+        radial-gradient(ellipse 11px 7px  at 63% 48%, rgba(224,64,142,0.05) 60%, transparent 61%);
+      background-size: 100% 100%;
+    }
+    .day-header {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.3rem 1.6rem; border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, rgba(212,24,106,0.07) 0%, transparent 70%);
+    }
+    .day-num {
+      width: 50px; height: 50px; flex-shrink: 0;
+      background: linear-gradient(135deg, #ff9ec8, var(--accent));
+      color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Jua', sans-serif;
+      font-size: 1.15rem; line-height: 1;
+      box-shadow: 0 4px 14px rgba(212,24,106,0.3);
+      animation: num-bounce 2s ease-in-out infinite;
+    }
+    .day-card:nth-child(1) .day-num { animation-delay: 0s; }
+    .day-card:nth-child(2) .day-num { animation-delay: 0.5s; }
+    .day-card:nth-child(3) .day-num { animation-delay: 1s; }
+    .day-card:nth-child(4) .day-num { animation-delay: 1.5s; }
+    @keyframes num-bounce {
+      0%, 70%, 100% { transform: translateY(0); }
+      80%            { transform: translateY(-8px); }
+      90%            { transform: translateY(-3px); }
+    }
+    .day-info { min-width: 0; }
+    .day-info h3 { font-size: 1rem; margin-bottom: 0.15rem; word-break: keep-all; overflow-wrap: break-word; }
+    .day-info .day-date { font-size: 0.78rem; color: var(--muted); }
+
+    .day-body { padding: 1.4rem 1.6rem; }
+    .narita-clip {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      padding-top: 1.5em;
+      margin-top: -1.5em;
+      vertical-align: top;
+    }
+    .plane-fly {
+      position: absolute;
+      top: 0.1em;
+      left: 0;
+      font-size: 1.1em;
+      line-height: 1;
+      pointer-events: none;
+      animation: plane-cross 3.5s ease-in-out infinite;
+    }
+    @keyframes plane-cross {
+      0%   { left: -1.5em; opacity: 0; }
+      12%  { opacity: 1; }
+      88%  { opacity: 1; }
+      100% { left: calc(100% + 0.5em); opacity: 0; }
+    }
+    .schedule-list { list-style: none; }
+    .schedule-list li {
+      display: flex; gap: 0.7rem; padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(212,24,106,0.1);
+      font-size: 0.9rem; align-items: flex-start; color: var(--text);
+      word-break: keep-all; overflow-wrap: break-word;
+    }
+    .schedule-list li:last-child { border-bottom: none; }
+    .schedule-list li > span:not(.schedule-arrow):not(.schedule-note) { flex: 1; min-width: 0; }
+    .schedule-arrow { color: var(--accent); font-size: 0.78rem; padding-top: 0.3rem; flex-shrink: 0; }
+    .schedule-note { color: var(--gold); }
+    .loc-btn {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.6rem;
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      vertical-align: middle;
+      transition: background 0.2s, color 0.2s;
+    }
+    .loc-btn:hover { background: var(--accent); color: #fff; }
+    .spin-star {
+      display: inline-block;
+      animation: star-spin 1.8s linear infinite;
+      transform-origin: center;
+    }
+    @keyframes star-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .meal-row { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 0; flex-wrap: wrap; }
+    .meal-label { color: var(--accent3); white-space: nowrap; flex-shrink: 0; }
+    .meal-input {
+      flex: 1; min-width: 0; width: 100%;
+      background: rgba(212,24,106,0.06); border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.32rem 0.75rem; color: var(--text);
+      font-family: 'Jua', sans-serif; font-size: 0.86rem;
+      outline: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .meal-input::placeholder { color: #c494ac; font-size: 0.82rem; }
+    .meal-input:focus { border-color: var(--accent); background: rgba(212,24,106,0.1); }
+
+    /* ── MAP CARDS ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+      gap: 0.9rem;
+    }
+    .map-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 0.8rem;
+      cursor: pointer; color: var(--text);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .map-card:hover { background: var(--card2); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px var(--pink-glow); }
+    .map-card-name { font-size: 0.9rem; word-break: keep-all; }
+    .map-card-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .tag { display: inline-block; font-size: 0.68rem; padding: 0.18rem 0.5rem; border-radius: 4px; margin-top: 0.25rem; }
+    .tag-map        { background: rgba(212,24,106,0.1); color: var(--accent3); }
+    .tag-food       { background: rgba(212,24,106,0.1); color: var(--accent);  }
+    .tag-collection { background: rgba(212,24,106,0.15); color: var(--accent); }
+
+    /* ── MAP MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(255,224,240,0.6); backdrop-filter: blur(10px); z-index: 1000;
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      width: 100%; max-width: 680px; max-height: 88vh;
+      display: flex; flex-direction: column;
+      transform: scale(0.95); transition: transform 0.25s;
+      box-shadow: 0 8px 50px rgba(212,24,106,0.2);
+    }
+    .modal-overlay.open .modal { transform: scale(1); }
+    .modal-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.9rem 1.2rem; border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, rgba(212,24,106,0.07), transparent);
+    }
+    .modal-title { font-size: 0.95rem; color: var(--accent); }
+    .modal-close {
+      background: none; border: none; color: var(--muted);
+      font-size: 1.2rem; cursor: pointer; padding: 0.2rem 0.45rem; border-radius: 6px; transition: background 0.2s;
+      font-family: 'Jua', sans-serif;
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-map { flex: 1; min-height: 320px; }
+    .modal-map iframe { width: 100%; height: 100%; min-height: 320px; border: none; display: block; }
+    .modal-collection {
+      padding: 2rem 1.5rem; flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; gap: 1rem;
+    }
+    .modal-collection .coll-icon { font-size: 2.6rem; }
+    .modal-collection .coll-title { font-size: 0.95rem; color: var(--accent); line-height: 1.6; }
+    .modal-collection .coll-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; max-width: 320px; }
+    .modal-collection .coll-btn {
+      display: inline-block; margin-top: 0.4rem; padding: 0.75rem 1.8rem;
+      background: linear-gradient(135deg, var(--accent3), var(--accent));
+      color: #fff; font-family: 'Jua', sans-serif; font-size: 0.88rem;
+      border-radius: 50px; text-decoration: none;
+      box-shadow: 0 4px 18px rgba(212,24,106,0.35); transition: transform 0.2s;
+    }
+    .modal-collection .coll-btn:hover { transform: translateY(-2px); }
+    .modal-links { padding: 0.75rem 1.2rem; border-top: 1px solid var(--border); display: flex; gap: 0.7rem; }
+    .modal-link {
+      font-size: 0.78rem; color: var(--accent); text-decoration: none;
+      padding: 0.3rem 0.8rem; border: 1px solid var(--accent);
+      border-radius: 6px; opacity: 0.85; transition: opacity 0.2s, background 0.2s;
+    }
+    .modal-link:hover { opacity: 1; background: var(--pink-glow); }
+
+    /* ── PACKING ── */
+    .pack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+      gap: 1.2rem;
+    }
+    .pack-group { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+    .pack-group h4 { font-size: 0.78rem; letter-spacing: 0.1em; color: var(--accent3); text-transform: uppercase; margin-bottom: 0.9rem; }
+    .check-item { display: flex; align-items: center; gap: 0.55rem; padding: 0.32rem 0; cursor: pointer; user-select: none; }
+    .check-item input[type="checkbox"] { display: none; }
+    .check-box {
+      width: 17px; height: 17px; border: 2px solid var(--border); border-radius: 4px;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .check-item:hover .check-box { border-color: var(--accent); }
+    .check-item.done .check-box { background: var(--accent); border-color: var(--accent); }
+    .check-item.done .check-box::after { content:'✓'; font-size:10px; color:#fff; font-weight:700; }
+    .check-label { font-size: 0.88rem; color: var(--text); transition: color 0.15s; word-break: keep-all; overflow-wrap: break-word; }
+    .check-item.done .check-label { color: #c4a0b4; text-decoration: line-through; }
+    .pack-progress-wrap { margin-bottom: 1.8rem; display: flex; align-items: center; gap: 0.9rem; }
+    .pack-progress-bar { flex:1; height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+    .pack-progress-fill { height:100%; background: linear-gradient(90deg, var(--accent3), var(--accent)); border-radius:3px; width:0%; transition: width 0.4s ease; }
+    .pack-progress-text { font-size:0.78rem; color:var(--muted); white-space:nowrap; }
+
+    /* ── STEP TRACKER ── */
+    .steps-note { font-size: 0.84rem; color: var(--muted); margin-bottom: 1.8rem; line-height: 1.7; }
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin-bottom: 1.8rem; }
+    .step-day-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1rem 0.8rem; text-align: center; display: flex; flex-direction: column; gap: 0.5rem; align-items: center;
+    }
+    .step-day-label { font-size: 0.72rem; color: var(--accent3); letter-spacing: 0.04em; }
+    .step-input {
+      width: 100%; text-align: center;
+      background: rgba(212,24,106,0.06); border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.4rem 0.3rem; color: var(--text); font-family: 'Jua', sans-serif; font-size: 1.1rem;
+      outline: none; transition: border-color 0.2s; -moz-appearance: textfield;
+    }
+    .step-input::-webkit-inner-spin-button, .step-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .step-input:focus { border-color: var(--accent); }
+    .step-unit { font-size: 0.7rem; color: var(--muted); }
+    .steps-total-wrap {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.4rem 1.6rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .steps-total-row { display: flex; justify-content: space-between; align-items: baseline; }
+    .steps-total-label { font-size: 0.78rem; color: var(--muted); }
+    .steps-total-num { font-size: 1.6rem; color: var(--accent); }
+    .steps-bar-wrap { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .steps-bar-fill { height: 100%; background: linear-gradient(90deg, #ff9ec8, var(--accent)); width: 0%; transition: width 0.5s ease; border-radius: 4px; }
+    .steps-goal-text { font-size: 0.76rem; color: var(--muted); text-align: right; }
+
+    /* ── BONUS ── */
+    .bonus-card {
+      background: var(--card); border: 2px solid var(--accent2); border-radius: 12px; padding: 1.3rem 1.6rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; color: var(--text); transition: background 0.2s;
+      box-shadow: 0 4px 20px var(--pink-glow);
+    }
+    .bonus-card:hover { background: var(--card2); }
+    .bonus-card .icon { font-size: 1.5rem; }
+    .bonus-card .label { font-size: 0.74rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.15rem; }
+    .bonus-card .name { font-size: 0.95rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2.5rem 1.5rem;
+      color: var(--muted); font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+      background: var(--card2);
+    }
+    footer span { color: var(--accent); }
+    .fight-btn {
+      margin-top: 1.2rem; display: inline-block;
+      padding: 0.55rem 1.4rem; font-size: 0.8rem;
+      background: none; border: 1.5px dashed var(--border);
+      border-radius: 50px; color: var(--muted); cursor: pointer;
+      font-family: 'Jua', sans-serif; letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .fight-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── CHECKLIST COMPLETE MODAL ── */
+    #checkDoneModal {
+      display: flex; align-items: center; justify-content: center;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+      z-index: 1200; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #checkDoneModal.open { opacity: 1; pointer-events: all; }
+    .check-done-inner {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      width: 90%; max-width: 380px; max-height: 85vh;
+      display: flex; flex-direction: column; align-items: center;
+      transform: scale(0.88); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #checkDoneModal.open .check-done-inner { transform: scale(1); }
+    .check-done-text {
+      padding: 1.2rem 1.5rem 0.8rem;
+      font-family: 'Jua', sans-serif; font-size: 1.1rem;
+      color: var(--accent); text-align: center;
+    }
+    .check-done-inner img { width: 100%; object-fit: cover; max-height: 55vh; display: block; }
+    .check-done-close {
+      margin: 1rem; padding: 0.55rem 2rem;
+      background: var(--accent); color: #fff; border: none; border-radius: 50px;
+      font-family: 'Jua', sans-serif; font-size: 0.95rem; cursor: pointer;
+    }
+    .check-done-close:hover { background: var(--accent3); }
+
+    /* ── FIGHT MODAL ── */
+    #fightModal { align-items: flex-end; padding: 0; }
+    .fight-modal-inner {
+      background: #fff; border-radius: 20px 20px 0 0; overflow: hidden;
+      width: 100%; max-width: 480px; max-height: 88vh;
+      display: flex; flex-direction: column; align-items: center;
+      transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #fightModal.open .fight-modal-inner { transform: translateY(0); }
+    .fight-modal-inner img { width: 100%; object-fit: cover; max-height: 72vh; display: block; }
+    .fight-caption { padding: 1rem 1.5rem 1.5rem; text-align: center; font-size: 0.92rem; color: var(--accent); background: #fff; width: 100%; }
+
+    /* ── MOBILE ≤430px ── */
+    @media (max-width: 430px) {
+      .hero-sparkle { font-size: 1.2rem; letter-spacing: 0.5rem; top: 12%; }
+      .hero-content { padding: 1.5rem 1rem 2.5rem; }
+      nav a { padding: 0.75rem 0.85rem; font-size: 0.76rem; }
+      .container { padding: 0 1rem; }
+      section { padding: 3rem 0; }
+      .section-title { margin-bottom: 1.8rem; }
+      .day-header { padding: 1rem; gap: 0.8rem; }
+      .day-num { width: 42px; height: 42px; font-size: 1rem; }
+      .day-info h3 { font-size: 0.9rem; }
+      .day-info .day-date { font-size: 0.72rem; }
+      .day-body { padding: 1rem; }
+      .schedule-list li { font-size: 0.85rem; gap: 0.5rem; padding: 0.55rem 0; }
+      .meal-row { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+      .meal-input { width: 100%; font-size: 0.82rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .pack-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .modal-overlay { padding: 0.75rem; }
+      .modal { border-radius: 14px; max-height: 92vh; }
+      .modal-map { min-height: 260px; }
+      .modal-map iframe { min-height: 260px; }
+      .bonus-card { padding: 1rem 1.2rem; }
+    }
+    @media (min-width: 431px) and (max-width: 640px) {
+      .hero-sparkle { font-size: 1.4rem; letter-spacing: 1rem; }
+      .day-header { padding: 1.1rem 1.4rem; }
+      .day-body { padding: 1.2rem 1.4rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
+<button id="expBtn" onclick="openExpModal()" title="지출 트래커">💴</button>
+<button id="transBtn" onclick="document.getElementById('transModal').classList.add('open')" title="번역기">🈳</button>
+
+<!-- EXPENSE TRACKER MODAL -->
+<div id="expModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="exp-inner">
+    <div class="exp-header">
+      <div class="exp-header-sub">💴 지출 트래커</div>
+      <div class="exp-header-title">도쿄 여행 예산</div>
+      <div class="exp-summary">
+        <div class="exp-sum-box">
+          <div class="exp-sum-label">총 지출</div>
+          <div class="exp-sum-val" id="expTotal">¥0</div>
+          <div class="exp-sum-won" id="expTotalKrw">≈ 0원</div>
+        </div>
+        <div class="exp-sum-box">
+          <div class="exp-sum-label">잔액</div>
+          <div class="exp-sum-val" id="expRemain">-</div>
+          <div class="exp-sum-won" id="expRemainKrw"></div>
+        </div>
+      </div>
+      <div class="exp-bar-wrap"><div class="exp-bar-fill" id="expBar" style="width:0%"></div></div>
+      <div class="exp-bar-pct" id="expPct">0% 사용</div>
+      <div class="exp-budget-row">
+        예산:
+        <input class="exp-budget-input" type="number" id="expBudget" placeholder="¥100,000" oninput="saveExpBudget()" />
+        엔
+      </div>
+    </div>
+    <div class="exp-add-section">
+      <div class="exp-add-row">
+        <select class="exp-select" id="expCat" style="flex:1;">
+          <option value="🌅 아침">🌅 아침</option>
+          <option value="☀️ 점심">☀️ 점심</option>
+          <option value="🌙 저녁">🌙 저녁</option>
+          <option value="🚃 교통">🚃 교통</option>
+          <option value="🛍 쇼핑">🛍 쇼핑</option>
+        </select>
+        <select class="exp-select" id="expDay" style="flex:0.8;">
+          <option value="DAY 1">DAY 1</option>
+          <option value="DAY 2">DAY 2</option>
+          <option value="DAY 3">DAY 3</option>
+          <option value="DAY 4">DAY 4</option>
+        </select>
+      </div>
+      <input class="exp-input" type="text" id="expMemo" placeholder="메모 (예: 이치란 라멘)" style="width:100%; margin-bottom:6px;" />
+      <div class="exp-add-row">
+        <input class="exp-input" type="number" id="expAmt" placeholder="¥ 금액" style="flex:1;" />
+        <button class="exp-add-btn" onclick="addExpense()" style="flex:0.6;">+ 추가</button>
+      </div>
+    </div>
+    <div class="exp-list" id="expList"></div>
+    <div class="exp-close-row">
+      <button class="exp-close-btn" onclick="document.getElementById('expModal').classList.remove('open')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSLATOR MODAL -->
+<div id="transModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="trans-inner">
+    <div class="trans-title">🌸 한국어 ↔ 일본어 번역기</div>
+    <div class="trans-dir">
+      <span id="srcLang">한국어</span>
+      <button id="swapBtn" onclick="swapLang()" title="방향 전환">⇄</button>
+      <span id="tgtLang">일본어</span>
+    </div>
+    <textarea class="trans-textarea" id="transInput" rows="3" placeholder="번역할 텍스트를 입력하세요..."></textarea>
+    <div class="trans-voice-row">
+      <button class="voice-btn" id="micBtn" onclick="toggleMic()">🎤 음성 입력</button>
+      <button class="voice-btn" id="speakBtn" onclick="speakTranslation()">🔊 소리로 듣기</button>
+    </div>
+    <div id="transOutput">번역 결과가 여기 표시돼요 ✨</div>
+    <div id="transPronun" style="font-size:0.8rem;color:#9b59b6;padding:0.4rem 0.75rem 0;min-height:1.2em;"></div>
+    <div class="trans-actions">
+      <button id="transGoBtn" onclick="doTranslate()">번역하기</button>
+      <button id="transCloseBtn" onclick="document.getElementById('transModal').classList.remove('open')">닫기</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAP MODAL -->
+<div class="modal-overlay" id="mapModal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">지도</span>
+      <button class="modal-close" onclick="document.getElementById('mapModal').classList.remove('open')">✕</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- CHECKLIST DONE MODAL -->
+<div id="checkDoneModal" onclick="closeCheckDoneModal(event)">
+  <div class="check-done-inner">
+    <div class="check-done-text">전부 챙긴거 맞아? 🧳</div>
+    <img src="tokyo-img2.jpg" alt="준비물 완료" />
+    <button class="check-done-close" onclick="document.getElementById('checkDoneModal').classList.remove('open')">닫기</button>
+  </div>
+</div>
+
+<!-- FIGHT MODAL -->
+<div class="modal-overlay" id="fightModal" onclick="closeFightModal(event)">
+  <div class="fight-modal-inner">
+    <img src="tokyo-img2.jpg" alt="진정해" />
+    <div class="fight-caption">진정하고 서로 보자 🥺💕</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-sparkle">✦ ✧ ✦ ✧ ✦</div>
+  <div class="hero-content">
+    <p class="hero-tag">☀️ Summer 2026</p>
+    <h1>Tokyo Trip</h1>
+    <p class="hero-sub">도쿄 여행 계획표</p>
+    <p class="hero-date">2026. 08. 12 (수) – 08. 15 (토)</p>
+  </div>
+  <p class="scroll-hint">↓ scroll</p>
+</section>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#itinerary" class="active">일정</a>
+  <a href="#places">장소</a>
+  <a href="#restaurants">맛집</a>
+  <a href="#packing">준비물</a>
+</nav>
+
+<!-- ITINERARY -->
+<section id="itinerary">
+  <div class="container">
+    <p class="section-label">Itinerary</p>
+    <h2 class="section-title">일자별 일정</h2>
+    <div class="days">
+
+      <!-- DAY 1 -->
+      <div class="day-card">
+        <div class="day-card-inner">
+        <div class="day-header">
+          <div class="day-num">01</div>
+          <div class="day-info">
+            <h3>이케부쿠로 도착의 날</h3>
+            <p class="day-date">8/12 (수) · 나리타 입국 → 이케부쿠로</p>
+          </div>
+        </div>
+        <div class="day-body">
+          <ul class="schedule-list">
+            <li><span class="schedule-arrow">→</span><span><span class="narita-clip"><span class="plane-fly">✈️</span>12:00 나리타 도착</span> · 입국심사 / 짐 찾기 / 교통카드 발급</span></li>
+            <li><span class="schedule-arrow">→</span><span>공항 스카이라이너 → 닛포리 → 이케부쿠로 이동 🚃 <a class="loc-btn" href="나리타출발.pdf" target="_blank">🎫 티켓보기</a></span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🍱 점심</span>
+                <input class="meal-input" type="text" placeholder="도착했으니 일단 밥부터 🫡" data-key="d1_lunch" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span><span>15:00 ~ 16:00 숙소 체크인 ✅ <a class="loc-btn" href="https://maps.app.goo.gl/FCxwFJfRZHu5x86F6" target="_blank">📍 위치보기</a></span></li>
+            <li><span class="schedule-arrow">→</span><span>16:00~ 이케부쿠로 구경<br>선샤인시티 · 포켓몬센터 · Animate 등</span></li>
+            <li><span class="schedule-arrow">→</span><span>이케부쿠로 흡연카페 휴식 🚬 <span class="schedule-note">(다연픽)</span></span></li>
+            <li><span class="schedule-arrow">→</span><span class="schedule-note"><span class="spin-star">★</span> 인형뽑기 🧸</span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🥩 저녁</span>
+                <input class="meal-input" type="text" placeholder="고기 없으면 도쿄 온 의미 없다 🔥" data-key="d1_dinner" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🍶 이자카야</span>
+                <input class="meal-input" type="text" placeholder="술이 당기는 첫째 밤 🌙" data-key="d1_izakaya" />
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div><!-- /.day-card-inner -->
+      </div>
+
+      <!-- DAY 2 -->
+      <div class="day-card">
+        <div class="day-card-inner">
+        <div class="day-header">
+          <div class="day-num">02</div>
+          <div class="day-info">
+            <h3>오모테산도 · 하라주쿠 · 시부야</h3>
+            <p class="day-date">8/13 (목) · 08:00 출발</p>
+          </div>
+        </div>
+        <div class="day-body">
+          <ul class="schedule-list">
+            <li><span class="schedule-arrow">→</span><span>오모테산도 구경 👀</span></li>
+            <li><span class="schedule-arrow">→</span><span>하라주쿠 이동 🚶</span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🍣 점심</span>
+                <input class="meal-input" type="text" placeholder="회전초밥은 행복이야 🥹" data-key="d2_lunch" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span><span>하라주쿠 빈티지샵 쇼핑</span></li>
+            <li><span class="schedule-arrow">→</span><span>시부야 구경 — 비비안 1순위, 가방중고매장, 소품샵 👜</span></li>
+            <li><span class="schedule-arrow">→</span><span class="schedule-note">★ 땡큐마트 (3백엔샵)</span></li>
+            <li><span class="schedule-arrow">→</span><span>카페 하브스 ☕</span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🥘 저녁</span>
+                <input class="meal-input" type="text" placeholder="시부야의 밤, 배는 채워야지 ✨" data-key="d2_dinner" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span><span class="schedule-note"><span class="spin-star">★</span> 인형뽑기 (GIGO, TAITO Station) 🧸</span></li>
+            <li><span class="schedule-arrow">→</span><span>숙소 복귀</span></li>
+          </ul>
+        </div>
+        </div><!-- /.day-card-inner -->
+      </div>
+
+      <!-- DAY 3 -->
+      <div class="day-card">
+        <div class="day-card-inner">
+        <div class="day-header">
+          <div class="day-num">03</div>
+          <div class="day-info">
+            <h3>나카노 · 아키하바라</h3>
+            <p class="day-date">8/14 (금) · 08:00 출발</p>
+          </div>
+        </div>
+        <div class="day-body">
+          <ul class="schedule-list">
+            <li><span class="schedule-arrow">→</span><span>나카노 브로드웨이 (오전)</span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🍜 점심</span>
+                <input class="meal-input" type="text" placeholder="점심은 뭐 먹지... 고민 중 🤭" data-key="d3_lunch" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span><span>아키하바라</span></li>
+            <li><span class="schedule-arrow">→</span><span class="schedule-note"><span class="spin-star">★</span> 인형뽑기 🧸</span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🥩 저녁</span>
+                <input class="meal-input" type="text" placeholder="쇼핑 다 했으면 고기 먹어야지 💅" data-key="d3_dinner" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span><span>미나미 이케부쿠로 공원 🌳</span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🍶 야식 선택</span>
+                <input class="meal-input" type="text" placeholder="배부르면 패스, 아니면 고 🤔" data-key="d3_optional" />
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div><!-- /.day-card-inner -->
+      </div>
+
+      <!-- DAY 4 -->
+      <div class="day-card">
+        <div class="day-card-inner">
+        <div class="day-header">
+          <div class="day-num">04</div>
+          <div class="day-info">
+            <h3>마지막 쇼핑 · 귀국</h3>
+            <p class="day-date">8/15 (토) · 체크아웃 → 나리타 출국</p>
+          </div>
+        </div>
+        <div class="day-body">
+          <ul class="schedule-list">
+            <li><span class="schedule-arrow">→</span><span>10:00 기상 · 체크아웃 ✅</span></li>
+            <li><span class="schedule-arrow">→</span><span>이케부쿠로 or 아사쿠사로 이동 🚶</span></li>
+            <li><span class="schedule-arrow">→</span><span>짐 보관 🧳</span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">🥩 점심</span>
+                <input class="meal-input" type="text" placeholder="마지막 도쿄 밥, 울면서 먹는다 🥹" data-key="d4_lunch" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span><span>마지막 쇼핑 (이케부쿠로 또는 아사쿠사)</span></li>
+            <li><span class="schedule-arrow">→</span><span>나리타공항 이동 🚃 <a class="loc-btn" href="닛포리우에노출발.pdf" target="_blank">🎫 티켓보기</a></span></li>
+            <li><span class="schedule-arrow">→</span>
+              <div class="meal-row">
+                <span class="meal-label">✈ 저녁</span>
+                <input class="meal-input" type="text" placeholder="공항 밥도 도쿄면 맛있어 (그렇게 믿기로 함)" data-key="d4_dinner" />
+              </div>
+            </li>
+            <li><span class="schedule-arrow">→</span><span>출국 🛫</span></li>
+          </ul>
+        </div>
+        </div><!-- /.day-card-inner -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="leo-divider"></div>
+
+<!-- PLACES -->
+<section id="places">
+  <div class="container">
+    <p class="section-label">Places</p>
+    <h2 class="section-title">가볼 장소</h2>
+    <div class="grid-2">
+      <div class="map-card" onclick="openMap('하라주쿠 빈티지샵','Harajuku+vintage+shop+Tokyo','https://maps.app.goo.gl/No9WZ1cC7jmhbkbw5',false)">
+        <div><div class="map-card-name">하라주쿠 빈티지샵</div><span class="tag tag-map">🗺 사이트에서 보기</span></div>
+        <span class="map-card-icon">📍</span>
+      </div>
+      <div class="map-card" onclick="openMap('하라주쿠 빈티지샵 (예비)','Harajuku+vintage+shop+Tokyo','https://maps.app.goo.gl/gjd1xjdbyyAq4kcVA',false)">
+        <div><div class="map-card-name">하라주쿠 빈티지샵 (예비)</div><span class="tag tag-map">🗺 사이트에서 보기</span></div>
+        <span class="map-card-icon">📍</span>
+      </div>
+      <div class="map-card" onclick="openMap('시부야 빈티지샵','Shibuya+vintage+clothing+Tokyo','https://maps.app.goo.gl/wfks8SAHNuxTi2R26',false)">
+        <div><div class="map-card-name">시부야 빈티지샵</div><span class="tag tag-map">🗺 사이트에서 보기</span></div>
+        <span class="map-card-icon">📍</span>
+      </div>
+      <div class="map-card" onclick="openMap('시부야 인형뽑기','Shibuya+crane+game+Tokyo','https://maps.app.goo.gl/mmZDxQsc2sr46YW8A',false)">
+        <div><div class="map-card-name">시부야 인형뽑기</div><span class="tag tag-map">🗺 사이트에서 보기</span></div>
+        <span class="map-card-icon">🎰</span>
+      </div>
+      <div class="map-card" onclick="openMap('이케부쿠로 이자카야 모음집','','https://maps.app.goo.gl/Bn8WM77CWRbtxDAM7',true)">
+        <div><div class="map-card-name">이케부쿠로 이자카야 모음</div><span class="tag tag-collection">📂 구글맵 모음집</span></div>
+        <span class="map-card-icon">🍶</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="leo-divider"></div>
+
+<!-- RESTAURANTS -->
+<section id="restaurants">
+  <div class="container">
+    <p class="section-label">Restaurants</p>
+    <h2 class="section-title">식당 추천</h2>
+    <div class="grid-2">
+      <div class="map-card" onclick="openMap('규카츠 모토무라 이케부쿠로','Gyukatsu+Motomura+Ikebukuro+Tokyo','https://maps.app.goo.gl/e7WTA1R2GEFoiR3h6',false)">
+        <div><div class="map-card-name">규카츠 모토무라 이케부쿠로</div><span class="tag tag-food">🥩 규카츠 · 지도 보기</span></div>
+        <span class="map-card-icon">📍</span>
+      </div>
+      <div class="map-card" onclick="openMap('몬자야키 쿠우야','Monjayaki+Kuuya+Tokyo','https://maps.app.goo.gl/eDtZ6kjGpHoH4YUB6',false)">
+        <div><div class="map-card-name">몬자야키 쿠우야</div><span class="tag tag-food">🥘 몬자야키 · 지도 보기</span></div>
+        <span class="map-card-icon">📍</span>
+      </div>
+      <div class="map-card" onclick="openMap('스테이크 롯지','Steak+Lodge+Tokyo','https://share.google/zM0bRdDIcXSJxMyck',false)">
+        <div><div class="map-card-name">스테이크 롯지</div><span class="tag tag-food">🥩 스테이크 · 지도 보기</span></div>
+        <span class="map-card-icon">📍</span>
+      </div>
+      <div class="map-card" onclick="openMap('타다이마 헨신츄','Tadaima+Henshincyu+ramen+Nakano+Tokyo','https://share.google/aYZ1cyhovyllMWLSD',false)">
+        <div><div class="map-card-name">타다이마 헨신츄</div><span class="tag tag-food">🍜 라멘 · 지도 보기</span></div>
+        <span class="map-card-icon">📍</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="leo-divider"></div>
+
+<!-- PACKING -->
+<section id="packing">
+  <div class="container">
+    <p class="section-label">Packing List</p>
+    <h2 class="section-title">준비물 체크리스트</h2>
+    <div class="pack-progress-wrap">
+      <div class="pack-progress-bar"><div class="pack-progress-fill" id="progressFill"></div></div>
+      <span class="pack-progress-text" id="progressText">0 / 0 완료</span>
+    </div>
+    <div class="pack-grid">
+      <div class="pack-group">
+        <h4>필수품</h4>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">여권 / 신분증 / 비자</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">여권 사본</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">여행자보험 서류</span></label>
+      </div>
+      <div class="pack-group">
+        <h4>전자기기</h4>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">충전기</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">보조배터리 (용량표기)</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">돼지코 (변환 어댑터)</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">고데기</span></label>
+      </div>
+      <div class="pack-group">
+        <h4>미용</h4>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">스킨 / 로션</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">클렌징 제품</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">화장품</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">면도기</span></label>
+      </div>
+      <div class="pack-group">
+        <h4>상비약</h4>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">밴드 / 상처연고</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">복용약</span></label>
+      </div>
+      <div class="pack-group">
+        <h4>기타</h4>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">휴대용 우산</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">여행용 티슈</span></label>
+      </div>
+      <div class="pack-group">
+        <h4>의류</h4>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">잠옷</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">속옷 / 양말</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">옷</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">모자</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">악세서리</span></label>
+        <label class="check-item"><input type="checkbox" onchange="onCheck(this)"><span class="check-box"></span><span class="check-label">선글라스</span></label>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;">
+      <p class="section-label" style="margin-bottom:0.9rem;">번외</p>
+      <a class="bonus-card" href="https://www.instagram.com/reel/DYj_LFvhdTq/?igsh=MWRxamZvaHJjaDZrNA%3D%3D" target="_blank">
+        <span class="icon">📸</span>
+        <div>
+          <div class="label">Instagram Reel</div>
+          <div class="name">사진 잘 찍는 법</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="leo-divider"></div>
+
+<!-- STEP TRACKER -->
+<section id="steps">
+  <div class="container">
+    <p class="section-label">Step Tracker</p>
+    <h2 class="section-title">👟 만보기 기록</h2>
+<div class="steps-grid">
+      <div class="step-day-card">
+        <div class="step-day-label">Day 1 · 8/12</div>
+        <input class="step-input" type="number" placeholder="0" data-day="1" oninput="updateSteps()" />
+        <div class="step-unit">걸음</div>
+      </div>
+      <div class="step-day-card">
+        <div class="step-day-label">Day 2 · 8/13</div>
+        <input class="step-input" type="number" placeholder="0" data-day="2" oninput="updateSteps()" />
+        <div class="step-unit">걸음</div>
+      </div>
+      <div class="step-day-card">
+        <div class="step-day-label">Day 3 · 8/14</div>
+        <input class="step-input" type="number" placeholder="0" data-day="3" oninput="updateSteps()" />
+        <div class="step-unit">걸음</div>
+      </div>
+      <div class="step-day-card">
+        <div class="step-day-label">Day 4 · 8/15</div>
+        <input class="step-input" type="number" placeholder="0" data-day="4" oninput="updateSteps()" />
+        <div class="step-unit">걸음</div>
+      </div>
+    </div>
+    <div class="steps-total-wrap">
+      <div class="steps-total-row">
+        <span class="steps-total-label">4일 합계</span>
+        <span class="steps-total-num" id="stepsTotal">0 걸음</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>☀️ Tokyo Trip · 2026. 08. 12 – 08. 15</p>
+  <p style="margin-top:0.5rem;font-size:0.76rem;">우리 싸우지말고 잘다녀오자 <span>♡</span></p>
+  <button class="fight-btn" onclick="openFightModal()">🚨 싸울때 누르시오</button>
+</footer>
+
+<script>
+  // ── MAP (구글맵 직접 이동) ──
+  function openMap(name, query, extUrl, isCollection) {
+    const url = extUrl || ('https://www.google.com/maps/search/?q=' + query);
+    window.open(url, '_blank');
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('fightModal').classList.remove('open');
+  });
+
+  // ── FIGHT MODAL ──
+  function openFightModal() { document.getElementById('fightModal').classList.add('open'); }
+  function closeFightModal(e) {
+    if (e.target === document.getElementById('fightModal'))
+      document.getElementById('fightModal').classList.remove('open');
+  }
+
+  // ── MEAL INPUTS ──
+  const MEAL_KEY = 'tokyo_meals';
+  function getMeals() { try { return JSON.parse(localStorage.getItem(MEAL_KEY)||'{}'); } catch { return {}; } }
+  document.querySelectorAll('.meal-input').forEach(input => {
+    const saved = getMeals()[input.dataset.key];
+    if (saved) input.value = saved;
+    input.addEventListener('input', () => {
+      const m = getMeals(); m[input.dataset.key] = input.value;
+      try { localStorage.setItem(MEAL_KEY, JSON.stringify(m)); } catch {}
+    });
+  });
+
+  // ── CHECKLIST ──
+  const CHECK_KEY = 'tokyo_checks';
+  function getChecks() { try { return JSON.parse(localStorage.getItem(CHECK_KEY)||'{}'); } catch { return {}; } }
+  function onCheck(input) {
+    const item = input.closest('.check-item');
+    item.classList.toggle('done', input.checked);
+    const label = item.querySelector('.check-label').textContent;
+    const c = getChecks();
+    if (input.checked) c[label] = true; else delete c[label];
+    try { localStorage.setItem(CHECK_KEY, JSON.stringify(c)); } catch {}
+    updateProgress();
+  }
+  function updateProgress() {
+    const all = document.querySelectorAll('.check-item');
+    const done = document.querySelectorAll('.check-item.done');
+    const pct = all.length ? Math.round(done.length/all.length*100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = `${done.length} / ${all.length} 완료`;
+    if (all.length > 0 && done.length === all.length) {
+      setTimeout(() => document.getElementById('checkDoneModal').classList.add('open'), 400);
+    }
+  }
+  function closeCheckDoneModal(e) {
+    if (e.target === document.getElementById('checkDoneModal'))
+      document.getElementById('checkDoneModal').classList.remove('open');
+  }
+
+  // ── STEP TRACKER ──
+  const STEP_KEY = 'tokyo_steps';
+  function getSteps() { try { return JSON.parse(localStorage.getItem(STEP_KEY)||'{}'); } catch { return {}; } }
+  let stepCountTimer = null;
+  function updateSteps() {
+    const inputs = document.querySelectorAll('.step-input');
+    let total = 0;
+    const s = {};
+    inputs.forEach(inp => {
+      const v = parseInt(inp.value) || 0;
+      total += v;
+      s[inp.dataset.day] = v;
+    });
+    try { localStorage.setItem(STEP_KEY, JSON.stringify(s)); } catch {}
+    if (stepCountTimer) clearTimeout(stepCountTimer);
+    stepCountTimer = setTimeout(() => {
+      const el = document.getElementById('stepsTotal');
+      const start = parseInt(el.textContent.replace(/[^0-9]/g,'')) || 0;
+      const end = total;
+      const duration = 800;
+      const startTime = performance.now();
+      function tick(now) {
+        const p = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const cur = Math.round(start + (end - start) * ease);
+        el.textContent = cur.toLocaleString() + ' 걸음';
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }, 1500);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    // restore checks
+    const c = getChecks();
+    document.querySelectorAll('.check-item').forEach(item => {
+      const label = item.querySelector('.check-label').textContent;
+      const input = item.querySelector('input');
+      if (c[label]) { input.checked = true; item.classList.add('done'); }
+    });
+    updateProgress();
+    // restore steps
+    const s = getSteps();
+    document.querySelectorAll('.step-input').forEach(inp => {
+      if (s[inp.dataset.day]) inp.value = s[inp.dataset.day];
+    });
+    updateSteps();
+  });
+
+  // ── TRANSLATOR ──
+  let transDir = 'ko|ja';
+  function swapLang() {
+    transDir = transDir === 'ko|ja' ? 'ja|ko' : 'ko|ja';
+    document.getElementById('srcLang').textContent = transDir === 'ko|ja' ? '한국어' : '일본어';
+    document.getElementById('tgtLang').textContent = transDir === 'ko|ja' ? '일본어' : '한국어';
+    document.getElementById('transInput').placeholder = transDir === 'ko|ja' ? '번역할 텍스트를 입력하세요...' : '翻訳するテキストを入力してください...';
+    document.getElementById('transOutput').textContent = '번역 결과가 여기 표시돼요 ✨';
+    document.getElementById('transPronun').textContent = '';
+  }
+
+  function romajiToKorean(romaji) {
+    romaji = romaji.toLowerCase()
+      .replace(/ā/g,'aa').replace(/ī/g,'ii').replace(/ū/g,'uu').replace(/ē/g,'ee').replace(/ō/g,'oo');
+    romaji = romaji.replace(/kk/g,'k').replace(/ss/g,'s').replace(/tt/g,'t').replace(/pp/g,'p');
+    const rules = [
+      ['shi','시'],['chi','치'],['tsu','츠'],['tchi','치'],
+      ['sha','샤'],['shu','슈'],['sho','쇼'],['she','셰'],
+      ['cha','차'],['chu','추'],['cho','초'],['che','체'],
+      ['nya','냐'],['nyu','뉴'],['nyo','뇨'],
+      ['hya','햐'],['hyu','휴'],['hyo','효'],
+      ['mya','먀'],['myu','뮤'],['myo','묘'],
+      ['rya','랴'],['ryu','류'],['ryo','료'],
+      ['gya','갸'],['gyu','규'],['gyo','교'],
+      ['bya','뱌'],['byu','뷰'],['byo','뵤'],
+      ['pya','퍄'],['pyu','퓨'],['pyo','표'],
+      ['ka','카'],['ki','키'],['ku','쿠'],['ke','케'],['ko','코'],
+      ['sa','사'],['su','스'],['se','세'],['so','소'],
+      ['ta','타'],['te','테'],['to','토'],
+      ['na','나'],['ni','니'],['nu','누'],['ne','네'],['no','노'],
+      ['ha','하'],['hi','히'],['fu','후'],['hu','후'],['he','헤'],['ho','호'],
+      ['ma','마'],['mi','미'],['mu','무'],['me','메'],['mo','모'],
+      ['ya','야'],['yu','유'],['yo','요'],
+      ['ra','라'],['ri','리'],['ru','루'],['re','레'],['ro','로'],
+      ['wa','와'],['wi','위'],['wo','오'],
+      ['ga','가'],['gi','기'],['gu','구'],['ge','게'],['go','고'],
+      ['za','자'],['ji','지'],['zu','즈'],['ze','제'],['zo','조'],
+      ['ja','자'],['ju','주'],['jo','조'],
+      ['da','다'],['de','데'],['do','도'],
+      ['ba','바'],['bi','비'],['bu','부'],['be','베'],['bo','보'],
+      ['pa','파'],['pi','피'],['pu','푸'],['pe','페'],['po','포'],
+      ['a','아'],['i','이'],['u','우'],['e','에'],['o','오'],
+    ];
+    let result = '', i = 0;
+    while (i < romaji.length) {
+      if (romaji[i] === ' ') { result += ' '; i++; continue; }
+      if (romaji[i] === 'n') {
+        const next = romaji[i+1];
+        if (!next || !/[aiueo]/.test(next)) { result += 'ㄴ'; i++; continue; }
+      }
+      let matched = false;
+      for (const [rom, kor] of rules) {
+        if (romaji.startsWith(rom, i)) { result += kor; i += rom.length; matched = true; break; }
+      }
+      if (!matched) { result += romaji[i]; i++; }
+    }
+    return result;
+  }
+
+  async function doTranslate() {
+    const text = document.getElementById('transInput').value.trim();
+    if (!text) return;
+    const [sl, tl] = transDir.split('|');
+    const out = document.getElementById('transOutput');
+    const pronEl = document.getElementById('transPronun');
+    out.textContent = '번역 중...';
+    pronEl.textContent = '';
+    try {
+      // Google Translate 내부 API (MyMemory보다 정확)
+      const res = await fetch(
+        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`
+      );
+      const data = await res.json();
+      let translated = '';
+      if (Array.isArray(data[0])) {
+        data[0].forEach(seg => { if (seg && seg[0]) translated += seg[0]; });
+      }
+      out.textContent = translated || '번역 실패 😢';
+
+      if (transDir === 'ko|ja' && translated) {
+        // 번역된 일본어의 로마자 발음 가져오기
+        const rmRes = await fetch(
+          `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ja&tl=en&dt=t&dt=rm&q=${encodeURIComponent(translated)}`
+        );
+        const rmData = await rmRes.json();
+        let romaji = '';
+        if (Array.isArray(rmData[0])) {
+          rmData[0].forEach(seg => {
+            if (Array.isArray(seg) && seg[3]) romaji += seg[3] + ' ';
+          });
+        }
+        romaji = romaji.trim();
+        if (romaji) pronEl.textContent = '🔊 발음: ' + romajiToKorean(romaji);
+      }
+    } catch {
+      out.textContent = '네트워크 오류가 발생했어요 😢';
+    }
+  }
+  document.getElementById('transInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); doTranslate(); }
+  });
+
+  // ── 음성 입력 (STT) ──
+  let recognition = null;
+  let isListening = false;
+
+  function toggleMic() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('이 브라우저는 음성 인식을 지원하지 않아요. Chrome을 사용해줘!');
+      return;
+    }
+    if (isListening) {
+      recognition && recognition.stop();
+      return;
+    }
+    recognition = new SpeechRecognition();
+    recognition.lang = transDir === 'ko|ja' ? 'ko-KR' : 'ja-JP';
+    recognition.interimResults = true;
+    recognition.continuous = false;
+
+    const micBtn = document.getElementById('micBtn');
+    const ta = document.getElementById('transInput');
+
+    recognition.onstart = () => {
+      isListening = true;
+      micBtn.textContent = '⏹ 듣는 중...';
+      micBtn.classList.add('listening');
+      ta.value = '';
+      ta.placeholder = recognition.lang === 'ko-KR' ? '말해보세요...' : '話してください...';
+    };
+    recognition.onresult = e => {
+      let interim = '', final = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        if (e.results[i].isFinal) final += e.results[i][0].transcript;
+        else interim += e.results[i][0].transcript;
+      }
+      ta.value = final || interim;
+    };
+    recognition.onend = () => {
+      isListening = false;
+      micBtn.textContent = '🎤 음성 입력';
+      micBtn.classList.remove('listening');
+      ta.placeholder = transDir === 'ko|ja' ? '번역할 텍스트를 입력하세요...' : '翻訳するテキストを入力してください...';
+      if (ta.value.trim()) doTranslate();
+    };
+    recognition.onerror = e => {
+      isListening = false;
+      micBtn.textContent = '🎤 음성 입력';
+      micBtn.classList.remove('listening');
+      if (e.error !== 'no-speech') alert('음성 인식 오류: ' + e.error);
+    };
+    recognition.start();
+  }
+
+  // ── 음성 출력 (TTS) ──
+  function speakTranslation() {
+    const text = document.getElementById('transOutput').textContent;
+    if (!text || text.includes('표시돼요') || text.includes('번역 중') || text.includes('실패')) return;
+    if (!window.speechSynthesis) { alert('이 브라우저는 음성 출력을 지원하지 않아요.'); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = transDir === 'ko|ja' ? 'ja-JP' : 'ko-KR';
+    utter.rate = 0.9;
+    utter.pitch = 1.0;
+    // 해당 언어 목소리 우선 선택
+    const voices = window.speechSynthesis.getVoices();
+    const match = voices.find(v => v.lang.startsWith(utter.lang.split('-')[0]));
+    if (match) utter.voice = match;
+    window.speechSynthesis.speak(utter);
+  }
+
+  // 목소리 목록 미리 로드 (일부 브라우저 필요)
+  window.speechSynthesis && window.speechSynthesis.getVoices();
+
+  // ── OCR (사진 번역) ──
+
+  // ── SCROLL TO TOP ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  // ── NAV ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  }, { passive: true });
+  navLinks.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+
+  // ── 지출 트래커 ──
+  const EXP_KEY = 'tokyo_expenses';
+  const EXP_BUDGET_KEY = 'tokyo_budget';
+  const DAYS = ['DAY 1','DAY 2','DAY 3','DAY 4'];
+  let krwRate = 9.4; // 기본 환율 (1엔 = 9.4원)
+
+  // 실시간 환율 조회
+  fetch('https://open.er-api.com/v6/latest/JPY')
+    .then(r => r.json())
+    .then(d => { if (d.rates && d.rates.KRW) krwRate = d.rates.KRW; })
+    .catch(() => {});
+
+  function getExpenses() { try { return JSON.parse(localStorage.getItem(EXP_KEY) || '[]'); } catch { return []; } }
+  function saveExpenses(arr) { try { localStorage.setItem(EXP_KEY, JSON.stringify(arr)); } catch {} }
+  function getExpBudget() { return parseInt(localStorage.getItem(EXP_BUDGET_KEY)) || 0; }
+  function saveExpBudget() {
+    const v = parseInt(document.getElementById('expBudget').value) || 0;
+    localStorage.setItem(EXP_BUDGET_KEY, v);
+    renderExpenses();
+  }
+
+  function openExpModal() {
+    document.getElementById('expModal').classList.add('open');
+    const budget = getExpBudget();
+    if (budget) document.getElementById('expBudget').value = budget;
+    renderExpenses();
+  }
+
+  function addExpense() {
+    const cat = document.getElementById('expCat').value;
+    const day = document.getElementById('expDay').value;
+    const memo = document.getElementById('expMemo').value.trim();
+    const amt = parseInt(document.getElementById('expAmt').value);
+    if (!amt || amt <= 0) { document.getElementById('expAmt').focus(); return; }
+    const expenses = getExpenses();
+    expenses.push({ id: Date.now(), cat, day, memo: memo || cat, amt });
+    saveExpenses(expenses);
+    document.getElementById('expMemo').value = '';
+    document.getElementById('expAmt').value = '';
+    // 키보드 닫기
+    document.getElementById('expMemo').blur();
+    document.getElementById('expAmt').blur();
+    document.activeElement && document.activeElement.blur();
+    renderExpenses();
+  }
+
+  function deleteExpense(id) {
+    saveExpenses(getExpenses().filter(e => e.id !== id));
+    renderExpenses();
+  }
+
+  function renderExpenses() {
+    const expenses = getExpenses();
+    const budget = getExpBudget();
+    const total = expenses.reduce((s, e) => s + e.amt, 0);
+    const totalKrw = Math.round(total * krwRate);
+
+    document.getElementById('expTotal').textContent = '¥' + total.toLocaleString();
+    document.getElementById('expTotalKrw').textContent = '≈ ' + totalKrw.toLocaleString() + '원';
+
+    if (budget > 0) {
+      const remain = budget - total;
+      const pct = Math.min(Math.round(total / budget * 100), 100);
+      document.getElementById('expRemain').textContent = (remain >= 0 ? '¥' : '-¥') + Math.abs(remain).toLocaleString();
+      document.getElementById('expRemainKrw').textContent = '≈ ' + Math.abs(Math.round(remain * krwRate)).toLocaleString() + '원';
+      document.getElementById('expBar').style.width = pct + '%';
+      document.getElementById('expPct').textContent = pct + '% 사용';
+    } else {
+      document.getElementById('expRemain').textContent = '-';
+      document.getElementById('expRemainKrw').textContent = '예산을 입력해줘';
+      document.getElementById('expBar').style.width = '0%';
+      document.getElementById('expPct').textContent = '';
+    }
+
+    const list = document.getElementById('expList');
+    if (expenses.length === 0) {
+      list.innerHTML = '<div style="text-align:center;color:#c4a0b8;padding:2rem 0;font-size:0.9rem;">아직 지출 내역이 없어요 🌸</div>';
+      return;
+    }
+
+    list.innerHTML = DAYS.map(day => {
+      const items = expenses.filter(e => e.day === day);
+      if (!items.length) return '';
+      const dayTotal = items.reduce((s, e) => s + e.amt, 0);
+      return `
+        <div class="exp-day-group">
+          <div class="exp-day-label">
+            <span>${day}</span>
+            <span>¥${dayTotal.toLocaleString()} · ≈${Math.round(dayTotal * krwRate).toLocaleString()}원</span>
+          </div>
+          ${items.map(e => `
+            <div class="exp-item">
+              <span class="exp-item-cat">${e.cat.split(' ')[0]}</span>
+              <div class="exp-item-info">
+                <div class="exp-item-memo">${e.memo}</div>
+                <div class="exp-item-sub">${e.cat.split(' ').slice(1).join(' ')}</div>
+              </div>
+              <div class="exp-item-amt">
+                <div class="exp-item-jpy">¥${e.amt.toLocaleString()}</div>
+                <div class="exp-item-krw">≈${Math.round(e.amt * krwRate).toLocaleString()}원</div>
+              </div>
+              <button class="exp-item-del" onclick="deleteExpense(${e.id})">✕</button>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ── PWA 서비스 워커 등록 ──
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .catch(err => console.log('SW 등록 실패:', err));
+    });
+  }
+</script>
+</body>
+</html>

@@ -746,6 +746,72 @@
       .grid-2 { grid-template-columns: 1fr; }
     }
 
+    /* ── TRANSPORT GUIDE MODAL ── */
+    #transportModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 1300;
+      align-items: flex-end; justify-content: center;
+    }
+    #transportModal.open { display: flex; }
+    .transport-inner {
+      background: #fff; border-radius: 20px 20px 0 0;
+      width: 100%; max-width: 480px;
+      font-family: 'Jua', sans-serif;
+      animation: slide-up 0.32s cubic-bezier(0.34,1.56,0.64,1);
+      max-height: 88vh; display: flex; flex-direction: column;
+    }
+    .transport-header {
+      background: linear-gradient(135deg, #d4186a, #f472b6);
+      border-radius: 20px 20px 0 0; padding: 1.1rem 1.4rem;
+      color: #fff; flex-shrink: 0;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .transport-header-title { font-size: 1rem; }
+    .transport-header-sub { font-size: 0.75rem; opacity: 0.85; margin-top: 2px; }
+    .transport-close {
+      background: rgba(255,255,255,0.25); border: none; border-radius: 50%;
+      width: 30px; height: 30px; color: #fff; font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-family: 'Jua', sans-serif; flex-shrink: 0;
+    }
+    .transport-body { padding: 1.2rem 1.4rem 1.8rem; overflow-y: auto; }
+    .transport-steps { display: flex; flex-direction: column; gap: 0; }
+    .transport-step {
+      display: flex; gap: 1rem; align-items: flex-start;
+      position: relative;
+    }
+    .transport-step:not(:last-child)::after {
+      content: ''; position: absolute;
+      left: 19px; top: 42px;
+      width: 2px; height: calc(100% - 10px);
+      background: linear-gradient(to bottom, #f472b6, #fbd4ea);
+    }
+    .step-icon-wrap {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #ff9ec8, var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; box-shadow: 0 3px 10px rgba(212,24,106,0.25);
+      position: relative; z-index: 1;
+    }
+    .step-content { flex: 1; padding-bottom: 1.4rem; }
+    .step-title { font-size: 0.92rem; color: var(--text); line-height: 1.5; }
+    .step-desc { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.6; }
+    .transport-tip {
+      margin-top: 0.5rem; padding: 0.8rem 1rem;
+      background: rgba(212,24,106,0.07); border-radius: 10px;
+      font-size: 0.8rem; color: var(--muted); line-height: 1.7;
+      border-left: 3px solid var(--accent2);
+    }
+    .transport-btn {
+      display: inline-block; font-size: 0.72rem;
+      padding: 0.15rem 0.6rem;
+      border: 1px solid var(--accent); border-radius: 20px;
+      color: var(--accent); background: none; cursor: pointer;
+      font-family: 'Jua', sans-serif; vertical-align: middle;
+      margin-left: 4px; transition: background 0.2s, color 0.2s;
+    }
+    .transport-btn:hover { background: var(--accent); color: #fff; }
+
     /* ── EDIT MODE ── */
     #editBtn {
       position: fixed; bottom: 11.6rem; right: 1.2rem; z-index: 200;
@@ -910,6 +976,61 @@
   </div>
 </div>
 
+<!-- TRANSPORT GUIDE MODAL -->
+<div id="transportModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="transport-inner">
+    <div class="transport-header">
+      <div>
+        <div class="transport-header-title">✈️ 나리타 → 이케부쿠로 이동 가이드</div>
+        <div class="transport-header-sub">공항 도착 후 숙소까지</div>
+      </div>
+      <button class="transport-close" onclick="document.getElementById('transportModal').classList.remove('open')">✕</button>
+    </div>
+    <div class="transport-body">
+      <div class="transport-steps">
+        <div class="transport-step">
+          <div class="step-icon-wrap">🏢</div>
+          <div class="step-content">
+            <div class="step-title">지하 1층 · 게이세이 인포메이션 센터</div>
+            <div class="step-desc">입국심사 · 짐 찾기 후 지하 1층으로 이동<br>Keisei 표지판 따라가면 바로 나와요</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-icon-wrap">🎫</div>
+          <div class="step-content">
+            <div class="step-title">스카이라이너 티켓 교환</div>
+            <div class="step-desc">사전 구매한 티켓을 실물로 교환<br>예약 확인증 or QR코드 제시</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-icon-wrap">🚄</div>
+          <div class="step-content">
+            <div class="step-title">스카이라이너 탑승</div>
+            <div class="step-desc">지정석 · 티켓에 좌석 번호 있어요<br>약 40분 소요</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-icon-wrap">🚉</div>
+          <div class="step-content">
+            <div class="step-title">닛포리역 하차</div>
+            <div class="step-desc">종점 우에노 전 정차역 · 여기서 내리기<br>JR 닛포리역으로 이동 (같은 건물)</div>
+          </div>
+        </div>
+        <div class="transport-step">
+          <div class="step-icon-wrap">🚃</div>
+          <div class="step-content">
+            <div class="step-title">JR 야마노테선 → 이케부쿠로</div>
+            <div class="step-desc">외선 방향 (이케부쿠로·신주쿠 방면) 탑승<br>약 4정거장 · 10분 내외 · ¥210</div>
+          </div>
+        </div>
+      </div>
+      <div class="transport-tip">
+        💡 Suica / Pasmo 교통카드 있으면 닛포리→이케부쿠로 구간은 그냥 터치만 하면 돼요!
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-overlay"></div>
@@ -951,7 +1072,7 @@
         <div class="day-body">
           <ul class="schedule-list">
             <li><span class="schedule-arrow">→</span><span><span class="narita-clip"><span class="plane-fly">✈️</span>12:00 나리타 도착</span> · 입국심사 / 짐 찾기 / 교통카드 발급</span></li>
-            <li><span class="schedule-arrow">→</span><span>공항 스카이라이너 → 닛포리 → 이케부쿠로 이동 🚃 <a class="loc-btn" href="나리타출발.pdf" target="_blank">🎫 티켓보기</a></span></li>
+            <li><span class="schedule-arrow">→</span><span>공항 스카이라이너 → 닛포리 → 이케부쿠로 이동 🚃 <a class="loc-btn" href="나리타출발.pdf" target="_blank">🎫 티켓보기</a> <button class="transport-btn" onclick="document.getElementById('transportModal').classList.add('open')">🗺 이동방법</button></span></li>
             <li><span class="schedule-arrow">→</span>
               <div class="meal-row">
                 <span class="meal-label">🍱 점심</span>

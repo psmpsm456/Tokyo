@@ -987,14 +987,14 @@
 </div>
 
 <!-- TRANSPORT GUIDE MODAL -->
-<div id="transportModal" onclick="if(event.target===this)this.classList.remove('open')">
+<div id="transportModal" onclick="if(event.target===this){this.classList.remove('open');document.body.style.overflow=''}">
   <div class="transport-inner">
     <div class="transport-header">
       <div>
         <div class="transport-header-title">✈️ 나리타 → 이케부쿠로 이동 가이드</div>
         <div class="transport-header-sub">공항 도착 후 숙소까지</div>
       </div>
-      <button class="transport-close" onclick="document.getElementById('transportModal').classList.remove('open')">✕</button>
+      <button class="transport-close" onclick="document.getElementById('transportModal').classList.remove('open');document.body.style.overflow=''">✕</button>
     </div>
     <div class="transport-body">
       <div class="transport-steps">
@@ -1085,7 +1085,7 @@
         <div class="day-body">
           <ul class="schedule-list">
             <li><span class="schedule-arrow">→</span><span><span class="narita-clip"><span class="plane-fly">✈️</span>12:00 나리타 도착</span> · 입국심사 / 짐 찾기 / 교통카드 발급</span></li>
-            <li><span class="schedule-arrow">→</span><span>공항 스카이라이너 → 닛포리 → 이케부쿠로 이동 🚃 <a class="loc-btn" href="나리타출발.pdf" target="_blank">🎫 티켓보기</a> <button class="transport-btn" onclick="document.getElementById('transportModal').classList.add('open')">🗺 이동방법</button></span></li>
+            <li><span class="schedule-arrow">→</span><span>공항 스카이라이너 → 닛포리 → 이케부쿠로 이동 🚃 <a class="loc-btn" href="나리타출발.pdf" target="_blank">🎫 티켓보기</a> <button class="transport-btn" onclick="document.getElementById('transportModal').classList.add('open');document.body.style.overflow='hidden'">🗺 이동방법</button></span></li>
             <li><span class="schedule-arrow">→</span>
               <div class="meal-row">
                 <span class="meal-label">🍱 점심</span>
